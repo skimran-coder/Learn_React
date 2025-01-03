@@ -4,12 +4,7 @@ import { addAddress, addCoords } from "../Redux/locationSlice";
 
 const usePosition = ({ isLocateBtnClicked }) => {
   const dispatch = useDispatch();
-  console.log(isLocateBtnClicked);
-  console.log(
-    localStorage.getItem("lat") &&
-      localStorage.getItem("lng") &&
-      !isLocateBtnClicked
-  );
+ 
 
   useEffect(() => {
     function getLocation() {
@@ -18,7 +13,6 @@ const usePosition = ({ isLocateBtnClicked }) => {
         localStorage.getItem("lng") &&
         !isLocateBtnClicked
       ) {
-        console.log("early return");
         return;
       }
 

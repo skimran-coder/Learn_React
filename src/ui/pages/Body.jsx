@@ -55,13 +55,12 @@ const Body = () => {
 
         <div className="flex justify-between items-center">
           <h2 className=" font-Grotesk pt-8 font-bold text-2xl">
-            Discover {location.addressStr.split(",")[0]}'s top restaurant
+            Discover {location.addressStr.split(",")[1]}'s top restaurant
             chains!
           </h2>
           <ScrollX />
         </div>
 
-        {console.log(restaurantList)}
 
         <div className="flex gap-8 overflow-x-auto pt-8 pb-16">
           {restaurantList?.map((restaurant) => (
@@ -77,7 +76,7 @@ const Body = () => {
 
         <h2 className="text-center font-Grotesk pt-8 font-bold text-2xl">
           Restaurants with online food delivery in{" "}
-          {location.addressStr.split(",")[0]}
+          {location.addressStr.split(",")[1]}
         </h2>
 
         <div className="mt-4 ml-16 flex gap-4">

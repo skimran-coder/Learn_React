@@ -18,7 +18,6 @@ const useRestaurant = (location) => {
         );
 
         const data = await response.json();
-        console.log(data.data);
         setRestaurants(data?.data);
       } catch (error) {
         console.log(error);

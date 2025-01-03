@@ -8,6 +8,7 @@ import Cart from "./ui/pages/Cart";
 import SearchBar from "./ui/pages/SearchBar";
 import App from "./App";
 import "./index.css";
+import Dish from "./ui/pages/Dish";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -36,6 +37,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/search",
         element: <SearchBar />,
+      },
+      {
+        path: "/search/:type/:name",
+        element: <Dish />,
       },
     ],
   },

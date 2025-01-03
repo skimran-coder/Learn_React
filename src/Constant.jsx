@@ -18,6 +18,25 @@ export const Empty_Cart_IMG =
 export const Not_Found_IMG =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/empty_404_3x_rgdw87";
 
+export const rightIcon = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className=" size-6 "
+    shapeRendering="geometricPrecision"
+    textRendering="geometricPrecision"
+    imageRendering="optimizeQuality"
+    fillRule="evenodd"
+    clipRule="evenodd"
+    viewBox="0 0 512 243.58"
+  >
+    <path
+      fillRule="nonzero"
+      d="M373.57 0 512 120.75 371.53 243.58l-20.92-23.91 94.93-83L0 137.09v-31.75l445.55-.41-92.89-81.02z"
+      fill="#374151"
+    />
+  </svg>
+);
+
 export const aboutMe =
   "Meet the visionary behind FoodStore, Sk.Imran Hussain. With a passion for technology and a knack for innovation, Sk.Imran Hussain has meticulously crafted every aspect of the app, from concept to execution. With a keen eye for detail and a commitment to excellence, Sk.Imran Hussain has ensured that FoodStore delivers an unparalleled user experience, seamlessly blending functionality with aesthetics. As the driving force behind the app's success, Sk.Imran Hussain continues to push the boundaries of what's possible in the world of food delivery, making FoodStore the go-to choice for foodies everywhere.";
 
