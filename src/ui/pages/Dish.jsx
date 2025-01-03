@@ -15,17 +15,22 @@ const Dish = () => {
 
   let cards;
 
-  if (params.type === "dish") {
-    cards = cardsData[1]?.groupedCard?.cardGroupMap?.DISH?.cards;
-  } else if (params.type === "restaurant") {
-    cards = cardsData[1]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards;
-  }
+  const key = Object.keys(cardsData[1]?.groupedCard?.cardGroupMap).toString()
+  console.log(key)
+
+  // if (params.type === "dish") {
+  //   cards = cardsData[1]?.groupedCard?.cardGroupMap?.DISH?.cards;
+  // } else if (params.type === "restaurant") {
+  //   cards = cardsData[1]?.groupedCard?.cardGroupMap?.RESTAURANT?.cards;
+  // }
+
+  cards = cardsData[1]?.groupedCard?.cardGroupMap?.[key]?.cards;
 
   console.log(cardsData);
   console.log(cards);
 
-  return cards && cardsData && params.type === "dish" ? (
-    <div className="lg:w-3/4 w-full  mx-auto  px-4 lg:px-0 ">
+  return cards && cardsData && key === "DISH" ? (
+    <div className="lg:w-3/4 w-full  mx-auto  px-4 lg:px-0 min-h-screen">
       <h1 className="py-4 text-2xl font-extrabold text-gray-700">
         Craving {params.name}? We've Got the Best for You!
       </h1>
@@ -42,11 +47,11 @@ const Dish = () => {
       </div>
     </div>
   ) : (
-    <div className="lg:w-3/4 w-full  mx-auto  px-4 lg:px-0 my-4">
+    <div className="lg:w-3/4 w-full  mx-auto  px-4 lg:px-0 my-4 min-h-screen">
       <h1 className="py-4 text-2xl font-extrabold text-gray-700">
         Discover Deliciousness at {params.name}
       </h1>
-      <Link to={"/restaurant/" + cards[0]?.card?.card?.info?.id}>
+      <Link to={cards && "/restaurant/" + cards[0]?.card?.card?.info?.id}>
         <div className="flex items-center gap-4 w-full lg:w-[50%] rounded-md shadow-lg p-4 my-4 cursor-pointer">
           <div>
             <img

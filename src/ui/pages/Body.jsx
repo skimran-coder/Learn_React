@@ -36,6 +36,8 @@ const Body = () => {
     return <NoInternet />;
   }
 
+  console.log(categories)
+
   return (
     <main className=" w-full ">
       <div className="w-10/12 mx-auto ">

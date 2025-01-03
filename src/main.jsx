@@ -9,6 +9,7 @@ import SearchBar from "./ui/pages/SearchBar";
 import App from "./App";
 import "./index.css";
 import Dish from "./ui/pages/Dish";
+import Collection from "./ui/pages/Collection";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -41,6 +42,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/search/:type/:name",
         element: <Dish />,
+      },
+      {
+        path: "/collection/:name/:id",
+        element: <Collection />,
       },
     ],
   },
