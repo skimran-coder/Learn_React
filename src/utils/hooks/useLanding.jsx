@@ -1,24 +1,27 @@
-import { useEffect, useState } from "react"
-import { LANDING_API_URL } from "../../Constant"
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const useLanding = () => {
-    const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
+  const { lat, lng } = useSelector((store) => store.location);
 
+  useEffect(() => {
     async function getLanding() {
-        try {
-            const data = await fetch (LANDING_API_URL)
-            const json = await data.json()
-            setData(json?.data)
-        } catch (error) {
-            console.log(error)
-        }
+      try {
+        const data = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}landing/?lat=${lat}&lng=${lng}`
+        );
+        const json = await data.json();
+        setData(json?.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    useEffect(() =>{
-        getLanding()
-    },[])
+    getLanding();
+  }, [lat, lng]);
 
-    return data;
-}
+  return data;
+};
 
 export default useLanding;

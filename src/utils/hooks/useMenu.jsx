@@ -9,18 +9,20 @@ const useMenu = () => {
 
   const [restaurant, setRestaurant] = useState();
 
-  async function getRestaurantMenu() {
-    const data = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}menu/?resid=${resid}&lat=${lat}&lng=${lng}`
-    );
-
-    const json = await data.json();
-    setRestaurant(json?.data);
-  }
-
+  
   useEffect(() => {
+    async function getRestaurantMenu() {
+      const data = await fetch(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }menu/?resid=${resid}&lat=${lat}&lng=${lng}`
+      );
+  
+      const json = await data.json();
+      setRestaurant(json?.data);
+    }
     getRestaurantMenu();
-  }, []);
+  }, [lat, lng, resid]);
 
   return restaurant;
 };

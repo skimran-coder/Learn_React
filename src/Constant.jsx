@@ -6,8 +6,8 @@ export const IMG_CDN_URL =
 
 // export const API_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7041&lng=77.1025&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
-export const LANDING_API_URL =
-  "https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=22.51800&lng=88.38320";
+// export const LANDING_API_URL =
+//   "https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=22.51800&lng=88.38320";
 
 export const TOP_PICKS_CDN_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/";

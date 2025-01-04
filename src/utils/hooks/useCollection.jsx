@@ -9,7 +9,9 @@ const useCollection = (name, id) => {
     try {
       async function getCollectionData() {
         const response = await fetch(
-          `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&collection=${id}&tags=layout_CCS_${name}&sortBy=&filters=&type=rcv2&offset=0&page_type=null`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }collection/?lat=${lat}&lng=${lng}&name=${name}&id=${id}`
         );
 
         const data = await response.json();

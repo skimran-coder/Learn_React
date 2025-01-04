@@ -10,12 +10,14 @@ const useDish = (name) => {
     try {
       async function getDishData() {
         const response = await fetch(
-          `https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${name}&trackingId=undefined&submitAction=SUGGESTION`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }dish/?lat=${lat}&lng=${lng}&name=${name}`
         );
 
         const data = await response.json();
 
-        console.log(data)
+        console.log(data);
 
         setData(data?.data.cards);
       }
