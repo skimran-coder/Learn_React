@@ -5,7 +5,7 @@ import useRestaurant from "../../utils/hooks/useRestaurant";
 import useOnline from "../../utils/hooks/useOnline";
 import NoInternet from "../components/NoInternet";
 import Category from "../components/Category";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { filterHandler } from "../../utils/helper";
 import useFilterRestaurant from "../../utils/hooks/useFilterRestaurant";
 import ScrollX from "../components/ScrollX";
@@ -16,6 +16,8 @@ const Body = () => {
   usePosition({ isLocateBtnClicked: false });
   const location = useSelector((store) => store.location);
   const data = useRestaurant(location);
+  const categoryContainerRef = useRef();
+  const cardContainerRef = useRef();
 
   const categories =
     data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info;
@@ -36,7 +38,6 @@ const Body = () => {
     return <NoInternet />;
   }
 
-
   return (
     <main className=" w-full ">
       <div className="w-11/12 md:w-10/12 mx-auto ">
@@ -44,10 +45,13 @@ const Body = () => {
           <h3 className=" pt-8 font-bold text-lg sm:text-2xl font-Grotesk">
             Hungry for ideas?
           </h3>
-          <ScrollX />
+          <ScrollX container={categoryContainerRef} />
         </div>
 
-        <div className="overflow-x-scroll flex gap-4 pt-8">
+        <div
+          className="overflow-x-scroll flex gap-4 pt-8"
+          ref={categoryContainerRef}
+        >
           {categories &&
             categories.map((category) => (
               <Category {...category} key={category.id} />
@@ -59,11 +63,13 @@ const Body = () => {
             Discover {location.addressStr.split(",")[1]}'s top restaurant
             chains!
           </h2>
-          <ScrollX />
+          <ScrollX container={cardContainerRef} />
         </div>
 
-
-        <div className="resCards flex sm:gap-8 overflow-x-auto pt-8 pb-16">
+        <div
+          className="resCards flex sm:gap-8 overflow-x-auto pt-8 pb-16"
+          ref={cardContainerRef}
+        >
           {restaurantList?.map((restaurant) => (
             <Link
               to={"/restaurant/" + restaurant?.info?.id}
