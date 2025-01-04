@@ -12,7 +12,9 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       const indexToRemove = state.items.findIndex(
-        (item) => item?.card?.info?.id === action.payload
+        (item) =>
+          item?.card?.info?.id === action.payload ||
+          item?.dish?.info?.id === action.payload
       );
       if (indexToRemove !== -1) {
         state.items.splice(indexToRemove, 1);

@@ -5,7 +5,7 @@ import TimeIcon from "../icons/TimeIcon";
 
 const ResMenuHeader = ({ restaurant }) => {
   return (
-    <div className="flex justify-between border-b-8 border-myYellow mt-2 pb-4 px-4 rounded-md shadow-2xl h-fit ">
+    <div className="flex flex-wrap gap-2 justify-between border-b-8 border-myYellow mt-2 pb-4 px-4 rounded-md shadow-2xl h-fit ">
       <div className="top flex flex-col justify-around">
         <span className="flex items-center font-bold pl-2">
           <StarIcon />

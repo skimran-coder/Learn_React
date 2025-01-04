@@ -17,13 +17,13 @@ const SearchBar = () => {
   console.log(suggestedItems);
 
   return (
-    <div className="h-fit min-h-full w-3/5 m-auto">
+    <div className="h-fit min-h-full sm:w-4/5 lg:w-3/5 m-auto">
       <form className="search-container flex gap-4 pt-6 w-[100%] justify-center relative">
         <input
           type="text"
           placeholder="Search for restaurants and food"
           value={searchInput}
-          className="search-bar outline-0 border border-solid border-gray-400 w-full h-10 rounded-md py-4 px-10 text-base placeholder:text-base focus:border-myYellow  transition-all duration-300"
+          className="search-bar outline-0 border border-solid border-gray-400 w-full h-10 rounded-md mx-2 py-4 px-4 sm:px-10 text-base placeholder:text-sm sm:placeholder:text-base focus:border-myYellow  transition-all duration-300"
           name="search-bar"
           onChange={(e) => {
             setSearchInput(e.target.value);

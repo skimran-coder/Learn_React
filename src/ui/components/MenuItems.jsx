@@ -23,7 +23,7 @@ const MenuItems = ({ restaurant }) => {
     items.map((item) => (
       <div
         key={item?.card?.info?.id}
-        className="flex justify-between pb-6 border-b-4 border-myYellow mb-4 pt-2 relative rounded-sm  h-60  bg-white shadow-sm"
+        className="flex justify-between items-center pb-6 border-b-4 border-myYellow mb-4 pt-2 rounded-sm    bg-white shadow-sm"
       >
         <div>
           {item?.card?.info?.itemAttribute?.vegClassifier === "NONVEG" ? (
@@ -48,12 +48,12 @@ const MenuItems = ({ restaurant }) => {
               </h4>
             </span>
           ) : null}
-          <h4 className="text-base pb-4 pt-2 pr-8 text-justify opacity-75 overflow-y-hidden">
+          <h4 className="text-base pb-4 pt-2 pr-8 text-justify opacity-75   overflow-y-hidden">
             {showMore === item?.card?.info?.id
               ? item?.card?.info?.description
-              : item?.card?.info?.description?.substring(0, 169)}{" "}
+              : item?.card?.info?.description?.substring(0, 100)}{" "}
             {showMore !== item?.card?.info?.id &&
-            item?.card?.info?.description?.length > 169 ? (
+            item?.card?.info?.description?.length > 100 ? (
               <span
                 onClick={() => {
                   handleClickMore(item?.card?.info?.id);
@@ -64,13 +64,16 @@ const MenuItems = ({ restaurant }) => {
             ) : null}{" "}
           </h4>
         </div>
-        <img
-          src={IMG_CDN_URL + item?.card?.info?.imageId}
-          className="w-48 h-48 aspect-square object-cover rounded-lg"
-        />
 
-        <div className=" absolute bottom-2 right-6">
-          <Buttons item={item} />
+        <div className="shrink-0 relative">
+          <img
+            src={IMG_CDN_URL + item?.card?.info?.imageId}
+            className=" w-32 h-32 sm:w-48 sm:h-48 aspect-square object-cover rounded-lg "
+          />
+          <div className=" absolute -bottom-2 right-0 sm:right-8">
+            <Buttons item={item} />
+          </div>
+
         </div>
       </div>
     ))

@@ -46,7 +46,7 @@ const Buttons = ({ item }) => {
   };
 
   return isItemAdded.length !== 0 ? (
-    <div className="flex items-center bg-white gap-3 px-4 py-1 w-fit rounded-full shadow-md text-lg text-gray-800">
+    <div className="flex items-center bg-white gap-3 px-2 sm:px-4 py-1 w-fit rounded-full shadow-md text-lg text-gray-800">
       <button
         className="flex justify-center items-center w-8 h-8 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
         onClick={() => handleRemoveItem(item?.[key]?.info?.id)}
@@ -71,7 +71,7 @@ const Buttons = ({ item }) => {
     </div>
   ) : (
     <div
-      className="flex items-center justify-center w-28 py-1 rounded-full bg-white text-myYellow font-extrabold text-lg cursor-pointer hover:bg-gray-100 transition-colors ease-in-out border"
+      className="flex items-center justify-center w-20 sm:w-28 py-1 rounded-full bg-white text-myYellow font-extrabold text-lg cursor-pointer hover:bg-gray-100 transition-colors ease-in-out border"
       onClick={() => handleAddItem(item)}
     >
       ADD

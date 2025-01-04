@@ -51,11 +51,11 @@ const Dish = () => {
         Discover Deliciousness at {params.name}
       </h1>
       <Link to={cards && "/restaurant/" + cards[0]?.card?.card?.info?.id}>
-        <div className="flex items-center gap-4 w-full lg:w-[50%] rounded-md shadow-lg p-4 my-4 cursor-pointer">
-          <div>
+        <div className="flex flex-wrap items-center gap-4 w-full lg:w-[50%] rounded-md shadow-lg p-4 my-4 cursor-pointer">
+          <div className="shrink-0">
             <img
               src={IMG_CDN_URL + cards[0]?.card?.card?.info?.cloudinaryImageId}
-              className="w-24 h-24 sm:w-32 sm:h-32 aspect-square object-cover rounded-lg"
+              className="w-24 h-24 sm:w-32 sm:h-32 aspect-square object-cover rounded-lg "
             ></img>
           </div>
           <div>
@@ -63,7 +63,7 @@ const Dish = () => {
               {cards[0]?.card?.card?.info?.name}
             </h2>
 
-            <div className="flex gap-1 text-sm opacity-80">
+            <div className="flex flex-wrap gap-1 text-sm opacity-80">
               <p className="">★</p>
               <h3>{cards[0]?.card?.card?.info?.avgRatingString}</h3>
               {" • "}

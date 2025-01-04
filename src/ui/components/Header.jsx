@@ -106,12 +106,12 @@ function AppLogo({ toggleLocationBar }) {
   const addressArr = location.addressStr.split(",");
 
   return (
-    <div className="app-info flex items-center gap-4">
+    <div className="app-info flex flex-wrap items-center gap-2 sm:gap-4 ">
       <a href="/" className="">
         <img
           src={logo}
           alt="logo"
-          className="app-logo size-16 rounded-full"
+          className="app-logo size-16 rounded-full "
         ></img>
 
         {/* will add location sidebar */}
@@ -242,7 +242,7 @@ const Header = () => {
   }
 
   return (
-    <header className="header w-full h-24 flex justify-between sm:px-20 px-2  items-center bg-myBlack relative">
+    <header className="header w-full py-4 flex justify-between sm:px-20 px-2  items-center bg-myBlack relative">
       <LocationBar
         isLocationBarVisible={isLocationBarVisible}
         toggleLocationBar={toggleLocationBar}

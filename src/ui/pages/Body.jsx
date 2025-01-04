@@ -39,9 +39,9 @@ const Body = () => {
 
   return (
     <main className=" w-full ">
-      <div className="w-10/12 mx-auto ">
+      <div className="w-11/12 md:w-10/12 mx-auto ">
         <div className="flex justify-between items-center">
-          <h3 className=" pt-8 font-bold text-2xl font-Grotesk">
+          <h3 className=" pt-8 font-bold text-lg sm:text-2xl font-Grotesk">
             Hungry for ideas?
           </h3>
           <ScrollX />
@@ -55,7 +55,7 @@ const Body = () => {
         </div>
 
         <div className="flex justify-between items-center">
-          <h2 className=" font-Grotesk pt-8 font-bold text-2xl">
+          <h2 className=" font-Grotesk pt-8 font-bold text-lg sm:text-2xl">
             Discover {location.addressStr.split(",")[1]}'s top restaurant
             chains!
           </h2>
@@ -63,7 +63,7 @@ const Body = () => {
         </div>
 
 
-        <div className="flex gap-8 overflow-x-auto pt-8 pb-16">
+        <div className="resCards flex sm:gap-8 overflow-x-auto pt-8 pb-16">
           {restaurantList?.map((restaurant) => (
             <Link
               to={"/restaurant/" + restaurant?.info?.id}
@@ -75,12 +75,12 @@ const Body = () => {
           ))}
         </div>
 
-        <h2 className="text-center font-Grotesk pt-8 font-bold text-2xl">
+        <h2 className="text-center font-Grotesk pt-8 font-bold text-lg sm:text-2xl">
           Restaurants with online food delivery in{" "}
           {location.addressStr.split(",")[1]}
         </h2>
 
-        <div className="mt-4 ml-16 flex gap-4">
+        <div className="mt-8 sm:mt-4 sm:ml-16 flex flex-wrap gap-2 sm:gap-4">
           <button
             className={`bg-transparent border py-1 px-6 rounded-full ${
               filterState === "all" && "bg-gray-200 border-black"

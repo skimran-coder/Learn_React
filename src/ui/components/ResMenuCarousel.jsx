@@ -4,7 +4,7 @@ import Buttons from "./Buttons";
 const ResMenuCarousel = ({ carousel }) => {
   const { bannerId, dish, creativeId } = carousel;
   return (
-    <div key={bannerId} className="flex-shrink-0 w-72 relative">
+    <div key={bannerId} className="flex-shrink-0 w-60 sm:w-72 relative">
       <img src={TOP_PICKS_CDN_URL + creativeId} className="w-full h-auto"></img>
       <p className="text-white absolute bottom-5 left-3">
         {dish?.info?.price

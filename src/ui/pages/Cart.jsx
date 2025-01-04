@@ -35,84 +35,89 @@ const Cart = () => {
     return acc;
   }, []);
 
-  console.log(dataToDisplay);
-  console.log(JSON.parse(localStorage.getItem("cart")));
-
-  return (
-    <div className="md:w-4/5 sm:w-screen  m-auto h-fit min-h-screen flex flex-wrap ">
-      <div className=" min-w-fit">
-        {cartItems.length !== 0 &&
-          dataToDisplay.map((item) => {
+  return cartItems.length > 0 ? (
+    <div className="sm:w-4/5 md:w-3/5 lg:w-2/5 w-screen m-auto min-h-screen flex flex-col justify-center items-center">
+      <h1 className="text-gray-700 font-extrabold text-3xl pb-8">
+        Secure Checkout
+      </h1>
+      <div className="w-full max-w-3xl h-[80vh] bg-white shadow-md rounded-md overflow-y-auto">
+        <div className="p-5">
+          {dataToDisplay.map((item) => {
             const key = Object.keys(item)
               .filter((key) => key === "dish" || key === "card")
               .toString();
             return (
               <div
                 key={item?.[key]?.info?.id + Math.random()}
-                className="flex justify-center items-center shadow-lg gap-4 px-5 py-4"
+                className="flex flex-wrap items-center justify-between border-b border-gray-200 py-4"
               >
-                <div className=" w-fit">
-                  {item?.[key]?.info?.itemAttribute?.vegClassifier ===
-                  "NONVEG" ? (
-                    <NonVegIcon />
-                  ) : (
-                    <VegIcon />
-                  )}
+                <div className="flex items-center gap-4">
+                  <div>
+                    {item?.[key]?.info?.itemAttribute?.vegClassifier ===
+                    "NONVEG" ? (
+                      <NonVegIcon />
+                    ) : (
+                      <VegIcon />
+                    )}
+                  </div>
+                  <img
+                    src={IMG_CDN_URL + item?.[key]?.info?.imageId}
+                    className="w-16 h-16 rounded-lg object-cover"
+                  />
+                  <div>
+                    <h1 className="font-semibold text-gray-800">
+                      {item?.[key]?.info?.name}
+                    </h1>
+                    <p className="text-sm text-gray-500">
+                      ₹
+                      {item?.[key]?.info?.price / 100
+                        ? item?.[key]?.info?.price / 100
+                        : item?.[key]?.info?.defaultPrice / 100}
+                    </p>
+                  </div>
                 </div>
-                <img
-                  src={IMG_CDN_URL + item?.[key]?.info?.imageId}
-                  className="w-12 h-12 aspect-square object-cover rounded-lg  "
-                />
-                <h1 className="  w-60">{item?.[key]?.info?.name}</h1>
-                <div className=" w-fit">
-                  <Buttons item={item} />
-                </div>
-                <h3 className=" leading-6  w-fit ">
-                  {item?.[key]?.info?.price / 100
-                    ? "₹" + item?.[key]?.info?.price / 100
-                    : "₹" + item?.[key]?.info?.defaultPrice / 100}
-                </h3>
+                <Buttons item={item} />
               </div>
             );
           })}
+        </div>
+
+        {
+          <div className="p-5 border-t border-gray-200">
+            <h1 className="font-bold text-lg text-gray-800">Bill Details</h1>
+            <div className="flex justify-between text-gray-700 mt-4">
+              <span>Item Total</span>
+              <span>₹{price}</span>
+            </div>
+            <div className="flex justify-between text-gray-700 mt-2">
+              <span>Delivery Fees</span>
+              <span>₹{deliveryFees}</span>
+            </div>
+            <hr className="my-2 border-gray-200" />
+            <div className="flex justify-between text-gray-700 mt-2">
+              <span>Platform Fee</span>
+              <span>₹{platformFee}</span>
+            </div>
+            <div className="flex justify-between text-gray-700 mt-2">
+              <span>GST and Restaurant Charges</span>
+              <span>₹{gst}</span>
+            </div>
+            <hr className="my-2 border-gray-200" />
+            <div className="flex justify-between font-semibold text-gray-800 mt-2">
+              <span>Total</span>
+              <span className="text-myYellow">
+                ₹{price + deliveryFees + platformFee + gst}
+              </span>
+            </div>
+            <button className="w-full mt-5 py-2 bg-myYellow text-white font-semibold rounded-md">
+              Proceed to Checkout
+            </button>
+          </div>
+        }
       </div>
-
-      {cartItems.length !== 0 ? (
-        <div className="w-96 mt-12 mx-8 px-8 py-4 flex flex-col h-fit shadow-lg gap-2">
-          <h1 className="font-bold">Bill Details</h1>
-          <div className="flex justify-between opacity-70">
-            <h2>Item Total</h2>
-            <h2>₹{price}</h2>
-          </div>
-          <div className="flex justify-between opacity-70">
-            <h2>Delivery Fees</h2>
-            <h2>₹{deliveryFees}</h2>
-          </div>
-
-          <hr></hr>
-
-          <div className="flex justify-between opacity-70">
-            <h2>Platform fee</h2>
-            <h2>₹{platformFee}</h2>
-          </div>
-          <div className="flex justify-between opacity-70">
-            <h2>GST and Restaurant Charges</h2>
-            <h2>₹{gst}</h2>
-          </div>
-
-          <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-
-          <div className="flex justify-between">
-            <h2>To Pay</h2>
-            <h2>₹{price + deliveryFees + platformFee + gst}</h2>
-          </div>
-        </div>
-      ) : (
-        <div className="w-full m-auto">
-          <EmptyCart />
-        </div>
-      )}
     </div>
+  ) : (
+    <EmptyCart />
   );
 };
 

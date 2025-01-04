@@ -43,8 +43,8 @@ const Menu = () => {
   console.log(carousels)
 
   return restaurantMenu && restaurant ? (
-    <div className=" restaurant-menu w-3/5 mx-auto my-0  p-2 flex flex-col gap-8 min-h-screen">
-      <h2 className="font-bold text-2xl mt-4">{restaurant?.name}</h2>
+    <div className=" restaurant-menu w-full sm:w-4/5 lg:w-3/5 mx-auto my-0  p-2 flex flex-col gap-8 min-h-screen">
+      <h2 className="font-bold text-lg sm:text-2xl mt-4">{restaurant?.name}</h2>
 
       <ResMenuHeader restaurant={restaurant} />
 

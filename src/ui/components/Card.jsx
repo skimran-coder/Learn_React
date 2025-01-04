@@ -11,7 +11,7 @@ const Card = ({
   aggregatedDiscountInfoV3,
 }) => {
   return (
-    <div className="card  w-60 h-96 min-h-fit pb-4  cursor-pointer rounded-md flex flex-col gap-2 my-0 mx-auto transition-all duration-300 hover:scale-95 hover:shadow-none relative">
+    <div className="card w-40  sm:w-60 min-h-fit pb-2 sm:pb-4  cursor-pointer rounded-md flex flex-col gap-2 my-0 mx-auto transition-all duration-300 hover:scale-95 hover:shadow-none relative">
       <img
         src={IMG_CDN_URL + cloudinaryImageId}
         alt="Restaurant Image"
@@ -19,7 +19,7 @@ const Card = ({
       />
       {aggregatedDiscountInfoV3?.header &&
       aggregatedDiscountInfoV3?.subHeader ? (
-        <h2 className="absolute top-40 left-4 z-20 text-white font-extrabold text-xl">
+        <h2 className="absolute top-40 left-4 z-20 text-white font-extrabold text-lg sm:text-xl">
           <span>{aggregatedDiscountInfoV3?.header}</span>
           <span>{" " + aggregatedDiscountInfoV3?.subHeader}</span>
         </h2>

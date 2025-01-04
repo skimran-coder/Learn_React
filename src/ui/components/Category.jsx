@@ -6,7 +6,7 @@ const Category = ({ imageId, action }) => {
   return (
     <img
       src={IMG_CDN_URL + imageId}
-      className="w-36 cursor-pointer"
+      className="w-24 md:w-36 cursor-pointer"
       onClick={() => {
         navigate(
           `/collection/${action?.text?.toLowerCase()}/${
