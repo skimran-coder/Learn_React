@@ -71,7 +71,7 @@ const Buttons = ({ item }) => {
     </div>
   ) : (
     <div
-      className="flex items-center justify-center w-28 py-2 rounded-full bg-myYellow text-white font-extrabold text-sm cursor-pointer hover:bg-myYellowDark transition"
+      className="flex items-center justify-center w-28 py-1 rounded-full bg-white text-myYellow font-extrabold text-lg cursor-pointer hover:bg-gray-100 transition-colors ease-in-out border"
       onClick={() => handleAddItem(item)}
     >
       ADD

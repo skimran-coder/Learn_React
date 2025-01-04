@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useCollection from "../../utils/hooks/useCollection";
 import Card from "../components/Card";
 import Loader from "../components/Loader";
@@ -6,7 +6,6 @@ import Loader from "../components/Loader";
 const Collection = () => {
   const params = useParams();
   const data = useCollection(params.name, params.id);
-
 
   if (!data) {
     return <Loader />;
@@ -26,10 +25,16 @@ const Collection = () => {
         {data?.cards?.map((card) => {
           return (
             card?.card?.card?.info && (
-              <Card
-                {...card?.card?.card?.info}
-                key={card?.card?.card?.info.id}
-              />
+              <Link
+                to={"/restaurant/" + card?.card?.card?.info?.id}
+                key={card?.card?.card?.info?.id}
+                className="card-link"
+              >
+                <Card
+                  {...card?.card?.card?.info}
+                  key={card?.card?.card?.info.id}
+                />
+              </Link>
             )
           );
         })}
