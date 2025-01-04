@@ -132,18 +132,9 @@ function AppLogo({ toggleLocationBar }) {
   );
 }
 
-function NavComponent() {
-  const location = useLocation();
-  const [currentTab, setCurrentTab] = useState("");
-
-  useEffect(() => {
-    setCurrentTab(location.pathname.substr(1) || "home");
-  }, [location]);
-
-  const cartItems = useSelector((store) => store?.cart.items);
-
+function NavComponent({ currentTab, cartItems }) {
   return (
-    <nav className="navbar  gap-8 text-xl items-center flex ">
+    <nav className="navbar  gap-8 text-xl items-center hidden sm:flex ">
       <div className="nav-items">
         <ul className="items flex gap-8 text-white">
           <Link key={"search"} to="/search">
@@ -188,9 +179,61 @@ function NavComponent() {
   );
 }
 
+function BottomBar({ currentTab, cartItems }) {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 flex sm:hidden justify-around items-center h-16 z-50">
+      <Link key={"home"} to="/" className="home relative">
+        <div
+          className={`flex flex-col items-center cursor-pointer  transition-colors ${
+            currentTab === "home" ? "text-myYellow" : "text-gray-600"
+          }`}
+        >
+          <i className="fa-solid fa-house text-xl"></i>
+          <span className="text-xs font-medium">Home</span>
+        </div>
+      </Link>
+
+      <Link key={"search"} to="/search" className="search relative">
+        <div
+          className={`flex flex-col items-center cursor-pointer  transition-colors ${
+            currentTab === "search" ? "text-myYellow" : "text-gray-600"
+          }`}
+        >
+          <i className="fa-solid fa-magnifying-glass text-xl"></i>
+          <span className="text-xs font-medium">Search</span>
+        </div>
+      </Link>
+
+      <Link key={"cart"} to="/cart" className="cart relative">
+        <div
+          className={`flex flex-col items-center cursor-pointer  transition-colors relative ${
+            currentTab === "cart" ? "text-myYellow" : "text-gray-600"
+          }`}
+        >
+          <i className="fa-solid fa-cart-shopping text-xl"></i>
+          <span className="text-xs font-medium">Cart</span>
+
+          <span className="absolute top-0 right-3 bg-myYellow text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+            {cartItems.length}
+          </span>
+        </div>
+      </Link>
+    </div>
+  );
+}
+
 const Header = () => {
   const [isLocationBarVisible, setIsLocationBarVisible] = useState(false);
   const [isLocateBtnClicked, setIsLocateBtnClicked] = useState(false);
+  const location = useLocation();
+  const [currentTab, setCurrentTab] = useState("");
+
+  useEffect(() => {
+    setCurrentTab(location.pathname.substr(1) || "home");
+  }, [location]);
+
+  const cartItems = useSelector((store) => store?.cart.items);
+
   const dispatch = useDispatch();
   usePosition({ isLocateBtnClicked });
 
@@ -199,7 +242,7 @@ const Header = () => {
   }
 
   return (
-    <header className="header w-full h-24 flex justify-between flex-wrap px-20  items-center bg-myBlack relative">
+    <header className="header w-full h-24 flex justify-between sm:px-20 px-2  items-center bg-myBlack relative">
       <LocationBar
         isLocationBarVisible={isLocationBarVisible}
         toggleLocationBar={toggleLocationBar}
@@ -207,7 +250,8 @@ const Header = () => {
         setIsLocateBtnClicked={setIsLocateBtnClicked}
       />
       <AppLogo toggleLocationBar={toggleLocationBar} />
-      <NavComponent />
+      <NavComponent currentTab={currentTab} cartItems={cartItems} />
+      <BottomBar currentTab={currentTab} cartItems={cartItems} />
     </header>
   );
 };
