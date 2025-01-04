@@ -2,19 +2,19 @@ import MenuItems from "../components/MenuItems";
 import useMenu from "../../utils/hooks/useMenu";
 import Loader from "../components/Loader";
 import resMenu from "../../assets/menuSvg.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ResMenuHeader from "../components/ResMenuHeader";
 import ResMenuTitle from "../components/ResMenuTitle";
 import ResMenuCarousel from "../components/ResMenuCarousel";
 import ScrollX from "../components/ScrollX";
 
 const Menu = () => {
+  const carouselContainerRef = useRef();
   const data = useMenu();
   const restaurant = data?.cards[2]?.card?.card?.info;
   const restaurantMenu =
     data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
   const carousels = restaurantMenu[1]?.card?.card?.carousel;
-
 
   const categoryTitle =
     restaurantMenu?.map((restaurant) => restaurant?.card?.card?.title) ?? [];
@@ -40,7 +40,7 @@ const Menu = () => {
     }));
   };
 
-  console.log(carousels)
+  console.log(carousels);
 
   return restaurantMenu && restaurant ? (
     <div className=" restaurant-menu w-full sm:w-4/5 lg:w-3/5 mx-auto my-0  p-2 flex flex-col gap-8 min-h-screen">
@@ -53,11 +53,14 @@ const Menu = () => {
           <h2 className="font-extrabold text-xl pt-8">
             {restaurantMenu[1]?.card?.card?.title}
           </h2>
-          <ScrollX />
+          <ScrollX container={carouselContainerRef} />
         </div>
       )}
 
-      <div className="carousels-container flex overflow-x-auto gap-6">
+      <div
+        className="carousels-container flex overflow-x-auto gap-6"
+        ref={carouselContainerRef}
+      >
         {carousels &&
           carousels.map((carousel) => (
             <ResMenuCarousel carousel={carousel} key={carousel.bannerId} />
