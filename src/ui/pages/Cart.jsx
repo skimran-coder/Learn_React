@@ -8,54 +8,73 @@ import VegIcon from "../icons/VegIcon";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+
   const [price, setPrice] = useState(0);
   const deliveryFees = Math.floor(price * 0.1);
   const platformFee = 5;
   const gst = Math.floor((price + deliveryFees + platformFee) * 0.1);
 
   useEffect(() => {
-    const priceData = cartItems?.map(
-      (items) => items?.card?.info?.price || items?.card?.info?.defaultPrice
-    );
+    const priceData = cartItems?.map((items) => {
+      const key = Object.keys(items)
+        .filter((key) => key === "dish" || key === "card")
+        .toString();
+      return items?.[key]?.info?.price || items?.[key]?.info?.defaultPrice;
+    });
     const price = priceData.reduce((acc, price) => acc + price / 100, 0);
     setPrice(price);
   }, [cartItems]);
 
   const dataToDisplay = cartItems.reduce((acc, curr) => {
-    if (!acc.some((item) => item?.card?.info?.id === curr?.card?.info?.id)) {
+    const key = Object.keys(curr)
+      .filter((key) => key === "dish" || key === "card")
+      .toString();
+    if (!acc.some((item) => item?.[key]?.info?.id === curr?.[key]?.info?.id)) {
       acc.push(curr);
     }
     return acc;
   }, []);
 
+  console.log(dataToDisplay);
+  console.log(JSON.parse(localStorage.getItem("cart")));
+
   return (
     <div className="md:w-4/5 sm:w-screen  m-auto h-fit min-h-screen flex flex-wrap ">
       <div className=" min-w-fit">
         {cartItems.length !== 0 &&
-          dataToDisplay.map((item) => (
-            <div className="flex justify-center items-center shadow-lg gap-4 px-5 py-4">
-              <div className=" w-fit">
-                {item?.card?.info?.itemAttribute?.vegClassifier === "NONVEG" ? (
-                  <NonVegIcon />
-                ) : (
-                  <VegIcon />
-                )}
+          dataToDisplay.map((item) => {
+            const key = Object.keys(item)
+              .filter((key) => key === "dish" || key === "card")
+              .toString();
+            return (
+              <div
+                key={item?.[key]?.info?.id + Math.random()}
+                className="flex justify-center items-center shadow-lg gap-4 px-5 py-4"
+              >
+                <div className=" w-fit">
+                  {item?.[key]?.info?.itemAttribute?.vegClassifier ===
+                  "NONVEG" ? (
+                    <NonVegIcon />
+                  ) : (
+                    <VegIcon />
+                  )}
+                </div>
+                <img
+                  src={IMG_CDN_URL + item?.[key]?.info?.imageId}
+                  className="w-12 h-12 aspect-square object-cover rounded-lg  "
+                />
+                <h1 className="  w-60">{item?.[key]?.info?.name}</h1>
+                <div className=" w-fit">
+                  <Buttons item={item} />
+                </div>
+                <h3 className=" leading-6  w-fit ">
+                  {item?.[key]?.info?.price / 100
+                    ? "₹" + item?.[key]?.info?.price / 100
+                    : "₹" + item?.[key]?.info?.defaultPrice / 100}
+                </h3>
               </div>
-              <img
-                src={IMG_CDN_URL + item?.card?.info?.imageId}
-                className="w-12 h-12 aspect-square object-cover rounded-lg  "
-              />
-              <h1 className="  w-60">{item?.card?.info?.name}</h1>
-              <div className=" w-fit">
-                <Buttons item={item} />
-              </div>
-              <h3 className=" leading-6  w-fit ">
-                {item?.card?.info?.price / 100
-                  ? "₹" + item?.card?.info?.price / 100
-                  : "₹" + item?.card?.info?.defaultPrice / 100}
-              </h3>
-            </div>
-          ))}
+            );
+          })}
       </div>
 
       {cartItems.length !== 0 ? (

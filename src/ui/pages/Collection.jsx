@@ -7,7 +7,6 @@ const Collection = () => {
   const params = useParams();
   const data = useCollection(params.name, params.id);
 
-  console.log(data);
 
   if (!data) {
     return <Loader />;

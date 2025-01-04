@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 const useDish = (name) => {
   const [data, setData] = useState();
   const { lat, lng } = useSelector((store) => store.location);
-  console.log(name);
+  
 
   useEffect(() => {
     try {
@@ -17,7 +17,6 @@ const useDish = (name) => {
 
         const data = await response.json();
 
-        console.log(data);
 
         setData(data?.data.cards);
       }

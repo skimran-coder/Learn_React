@@ -7,6 +7,7 @@ export default {
         myBlack: "#282932",
         myGray: "#F2EFE6",
         myYellow: "#F7B614",
+        myYellowDark: "#eaa908",
         myGrayLight: "#f5f4f0",
         myGrayDark: "#e2e2e7",
       },

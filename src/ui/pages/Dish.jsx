@@ -16,7 +16,7 @@ const Dish = () => {
   let cards;
 
   const key = Object.keys(cardsData[1]?.groupedCard?.cardGroupMap).toString()
-  console.log(key)
+
 
   // if (params.type === "dish") {
   //   cards = cardsData[1]?.groupedCard?.cardGroupMap?.DISH?.cards;
@@ -26,8 +26,7 @@ const Dish = () => {
 
   cards = cardsData[1]?.groupedCard?.cardGroupMap?.[key]?.cards;
 
-  console.log(cardsData);
-  console.log(cards);
+  
 
   return cards && cardsData && key === "DISH" ? (
     <div className="lg:w-3/4 w-full  mx-auto  px-4 lg:px-0 min-h-screen">

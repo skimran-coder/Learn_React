@@ -50,7 +50,7 @@ const SearchBar = () => {
               cards.map((card) => {
                 return (
                   <div
-                    className="flex-shrink-0 w-24 "
+                    className="flex-shrink-0 w-24 cursor-pointer"
                     key={card.id}
                     onClick={() =>
                       setSearchInput(

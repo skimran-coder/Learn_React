@@ -4,6 +4,7 @@ import Buttons from "./Buttons";
 import NonVegIcon from "../icons/NonVegIcon";
 import VegIcon from "../icons/VegIcon";
 import StarIcon2 from "../icons/StarIcon2";
+import { useSelector } from "react-redux";
 
 const MenuItems = ({ restaurant }) => {
   const items = restaurant?.card?.card?.itemCards;
@@ -13,6 +14,9 @@ const MenuItems = ({ restaurant }) => {
   const handleClickMore = (id) => {
     setShowMore(id);
   };
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     items &&
