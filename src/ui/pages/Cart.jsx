@@ -1,13 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IMG_CDN_URL } from "../../Constant";
 import Buttons from "../components/Buttons";
 import EmptyCart from "../components/EmptyCart";
 import { useEffect, useState } from "react";
 import NonVegIcon from "../icons/NonVegIcon";
 import VegIcon from "../icons/VegIcon";
+import Trash from "../icons/Trash";
+import { emptyCartItems } from "../../utils/Redux/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
 
   const [price, setPrice] = useState(0);
   const deliveryFees = Math.floor(price * 0.1);
@@ -34,6 +37,11 @@ const Cart = () => {
     }
     return acc;
   }, []);
+
+  function emptyCart() {
+    dispatch(emptyCartItems());
+    localStorage.removeItem("cart");
+  }
 
   return cartItems.length > 0 ? (
     <div className="sm:w-4/5 md:w-3/5 lg:w-2/5 w-screen m-auto min-h-screen flex flex-col justify-center items-center">
@@ -80,6 +88,11 @@ const Cart = () => {
               </div>
             );
           })}
+          <div className="flex justify-end mt-2 ">
+            <span className="cursor-pointer" onClick={emptyCart}>
+              <Trash />
+            </span>
+          </div>
         </div>
 
         {
