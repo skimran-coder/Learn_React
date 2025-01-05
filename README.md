@@ -67,7 +67,7 @@ Food Store App is a dynamic, fully functional food delivery platform built with 
 git clone https://github.com/skimran-coder/Food-App.git
 cd food-store-app
 ```
-````
+
 
 ### Backend Setup
 
